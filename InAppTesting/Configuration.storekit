@@ -6,13 +6,28 @@
       "internalID" : "C96A2E05",
       "localizations" : [
         {
-          "description" : "Remove ADS to Have a smoot Experience",
-          "displayName" : "Remove Advertisement",
+          "description" : "Lemon berry description for testing",
+          "displayName" : "Lemon Berry",
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.ibrahimkarababa.InAppTesting.removeAds",
-      "referenceName" : "Remove Ads",
+      "productID" : "com.ibrahimkarababa.InAppTesting.lemonBerry",
+      "referenceName" : "Lemon Berry",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "29240A64",
+      "localizations" : [
+        {
+          "description" : "Berry Blue description for Testing",
+          "displayName" : "Berry Blue",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ibrahimkarababa.InAppTesting.berryBlue",
+      "referenceName" : "Berry Blue",
       "type" : "NonConsumable"
     }
   ],

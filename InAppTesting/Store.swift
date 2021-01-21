@@ -14,7 +14,7 @@ class StoreService:NSObject,ObservableObject{
     
     @Published var allRecipies = [Recipe]()
     
-    private let allProductIdentifiers = Set(["com.ibrahimkarababa.InAppTesting.removeAds"])
+    private let allProductIdentifiers = Set(["com.ibrahimkarababa.InAppTesting.berryBlue", "com.ibrahimkarababa.InAppTesting.lemonBerry"])
     
     private var productsRequest:SKProductsRequest?
     private var fetchedProducts = [SKProduct]()
@@ -71,6 +71,10 @@ extension StoreService{
     
     func product(for identifier: String) -> SKProduct?{
         return fetchedProducts.first(where: {$0.productIdentifier == identifier})
+    }
+    
+    func restorePurchases(){
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
 }
 

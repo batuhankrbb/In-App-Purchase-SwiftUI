@@ -27,6 +27,12 @@ struct ContentView: View {
                     }
                 }
             }
+            .navigationBarTitle(Text("Recipes"))
+            .navigationBarItems(leading: Button(action: {
+                store.restorePurchases()
+            }, label: {
+                Text("Restore")
+            }))
         }
     }
 }
@@ -65,9 +71,7 @@ struct RecipeCell:View{
             }
             Spacer()
             if let price = recipe.price, recipe.isLocked{
-                Button(action: {
-                    
-                }){
+                Button(action: action){
                     Text(price)
                         .foregroundColor(.white)
                         .padding()
