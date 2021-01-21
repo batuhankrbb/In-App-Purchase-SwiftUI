@@ -18,12 +18,18 @@ class StoreService:NSObject,ObservableObject{
     
     override init() {
         super.init()
+        startObservingPaymentQueue()
+        
         fetchProducts { (products) in
             print(products)
         }
     }
     
-    private func fetchProducts(_ completion: @escaping FetchCompletionHandler){
+    private func startObservingPaymentQueue(){
+        SKPaymentQueue.default().add(self)
+    }
+    
+    private func fetchProducts(_ completion: @escaping FetchCompletionHandler){ // Send fetch request to App Store to get products
         guard self.productsRequest == nil else {
             return
         }
@@ -37,7 +43,14 @@ class StoreService:NSObject,ObservableObject{
     
 }
 
+extension StoreService:SKPaymentTransactionObserver{
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        
+    }
+}
+
 extension StoreService:SKProductsRequestDelegate{
+    // It works when products receive. It assings products to fetched products and Trigger fetchCompletionHandler.
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let loadedProducts = response.products
         let invalidProducts = response.invalidProductIdentifiers
