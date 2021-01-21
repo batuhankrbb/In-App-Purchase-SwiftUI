@@ -7,13 +7,23 @@
 
 import StoreKit
 
-
+typealias FetchCompletionHandler = (([SKProduct]) -> Void)
 
 class StoreService:NSObject,ObservableObject{
     private let allProductIdentifiers = Set(["com.ibrahimkarababa.InAppTesting.removeAds"])
     
+    private var productsRequest:SKProductsRequest?
     private var fetchedProducts = [SKProduct]()
-    private var fetchCompletionHandler: (([SKProduct]) -> Void)?
+    private var fetchCompletionHandler:FetchCompletionHandler?
+    
+    private func fetchProduct(_ completion: @escaping FetchCompletionHandler){
+        guard self.productsRequest == nil else {
+            return
+        }
+        
+        fetchCompletionHandler = completion
+    }
+    
 }
 
 extension StoreService:SKProductsRequestDelegate{
@@ -32,7 +42,8 @@ extension StoreService:SKProductsRequestDelegate{
         fetchedProducts = loadedProducts
         
         DispatchQueue.main.async {
-            
+            self.fetchCompletionHandler?(loadedProducts)
+            self.fetchCompletionHandler = nil
         }
         
     }
