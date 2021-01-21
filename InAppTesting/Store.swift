@@ -8,13 +8,15 @@
 import StoreKit
 
 typealias FetchCompletionHandler = (([SKProduct]) -> Void)
+typealias PurchaseCompletionHandler = ((SKPaymentTransaction?) -> Void)
 
 class StoreService:NSObject,ObservableObject{
     private let allProductIdentifiers = Set(["com.ibrahimkarababa.InAppTesting.removeAds"])
     
     private var productsRequest:SKProductsRequest?
     private var fetchedProducts = [SKProduct]()
-    private var fetchCompletionHandler:FetchCompletionHandler?
+    private var fetchCompletionHandler:FetchCompletionHandler? // Assigned in fetchProducts, executed in ProductRequest
+    private var purchaseCompletionHandler:PurchaseCompletionHandler?
     
     private var completedPurchases = [String]()
     
@@ -43,6 +45,8 @@ class StoreService:NSObject,ObservableObject{
         productsRequest?.start()
     }
     
+    
+    
 }
 
 extension StoreService:SKPaymentTransactionObserver{ //Observes payment state
@@ -66,7 +70,12 @@ extension StoreService:SKPaymentTransactionObserver{ //Observes payment state
             
             if shouldFinishTransaction{ // If user completed either purchasing or canceling
                 SKPaymentQueue.default().finishTransaction(singleTransaction)
+                DispatchQueue.main.async {
+                    self.purchaseCompletionHandler?(singleTransaction)
+                    self.purchaseCompletionHandler = nil
+                }
             }
+            
         }
     }
 }
