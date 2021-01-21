@@ -1,0 +1,29 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "C96A2E05",
+      "localizations" : [
+        {
+          "description" : "Remove ADS to Have a smoot Experience",
+          "displayName" : "Remove Advertisement",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ibrahimkarababa.InAppTesting.removeAds",
+      "referenceName" : "Remove Ads",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}

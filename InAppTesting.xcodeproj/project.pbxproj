@@ -11,6 +11,8 @@
 		843792D425B960560066ACDB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843792D325B960560066ACDB /* ContentView.swift */; };
 		843792D625B960580066ACDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843792D525B960580066ACDB /* Assets.xcassets */; };
 		843792D925B960580066ACDB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843792D825B960580066ACDB /* Preview Assets.xcassets */; };
+		843792E325B961000066ACDB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843792E225B961000066ACDB /* Store.swift */; };
+		843792E525B9740B0066ACDB /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 843792E125B960750066ACDB /* Configuration.storekit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		843792D525B960580066ACDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843792D825B960580066ACDB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		843792DA25B960580066ACDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		843792E125B960750066ACDB /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		843792E225B961000066ACDB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				843792D525B960580066ACDB /* Assets.xcassets */,
 				843792DA25B960580066ACDB /* Info.plist */,
 				843792D725B960580066ACDB /* Preview Content */,
+				843792E125B960750066ACDB /* Configuration.storekit */,
+				843792E225B961000066ACDB /* Store.swift */,
 			);
 			path = InAppTesting;
 			sourceTree = "<group>";
@@ -127,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				843792D925B960580066ACDB /* Preview Assets.xcassets in Resources */,
+				843792E525B9740B0066ACDB /* Configuration.storekit in Resources */,
 				843792D625B960580066ACDB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843792E325B961000066ACDB /* Store.swift in Sources */,
 				843792D425B960560066ACDB /* ContentView.swift in Sources */,
 				843792D225B960560066ACDB /* InAppTestingApp.swift in Sources */,
 			);
