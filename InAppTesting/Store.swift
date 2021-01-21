@@ -15,8 +15,8 @@ class StoreService:NSObject,ObservableObject{
     
     private var productsRequest:SKProductsRequest?
     private var fetchedProducts = [SKProduct]()
-    private var fetchCompletionHandler:FetchCompletionHandler? // Assigned in fetchProducts, executed in ProductRequest
-    private var purchaseCompletionHandler:PurchaseCompletionHandler?
+    private var fetchCompletionHandler:FetchCompletionHandler? // Assigned in fetchProducts, executed in ProductRequestDidReceive
+    private var purchaseCompletionHandler:PurchaseCompletionHandler? // Assigned in buy, executed in PaymentQueueUpdatedTransaction
     
     private var completedPurchases = [String]()
     
@@ -45,7 +45,12 @@ class StoreService:NSObject,ObservableObject{
         productsRequest?.start()
     }
     
-    
+    private func buy(_ product: SKProduct, completion: @escaping PurchaseCompletionHandler){
+        purchaseCompletionHandler = completion
+        
+        let payment = SKPayment(product: product)
+        SKPaymentQueue.default().add(payment)
+    }
     
 }
 
