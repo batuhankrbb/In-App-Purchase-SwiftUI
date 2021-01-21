@@ -57,14 +57,11 @@
 		843792D025B960560066ACDB /* InAppTesting */ = {
 			isa = PBXGroup;
 			children = (
+				843792EB25B98AF80066ACDB /* RecipePurchase */,
 				843792D125B960560066ACDB /* InAppTestingApp.swift */,
-				843792E825B97E840066ACDB /* Recipe.swift */,
-				843792D325B960560066ACDB /* ContentView.swift */,
 				843792D525B960580066ACDB /* Assets.xcassets */,
 				843792DA25B960580066ACDB /* Info.plist */,
 				843792D725B960580066ACDB /* Preview Content */,
-				843792E125B960750066ACDB /* Configuration.storekit */,
-				843792E225B961000066ACDB /* Store.swift */,
 			);
 			path = InAppTesting;
 			sourceTree = "<group>";
@@ -75,6 +72,17 @@
 				843792D825B960580066ACDB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		843792EB25B98AF80066ACDB /* RecipePurchase */ = {
+			isa = PBXGroup;
+			children = (
+				843792E125B960750066ACDB /* Configuration.storekit */,
+				843792E225B961000066ACDB /* Store.swift */,
+				843792D325B960560066ACDB /* ContentView.swift */,
+				843792E825B97E840066ACDB /* Recipe.swift */,
+			);
+			path = RecipePurchase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
