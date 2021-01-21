@@ -11,6 +11,9 @@ typealias FetchCompletionHandler = (([SKProduct]) -> Void)
 typealias PurchaseCompletionHandler = ((SKPaymentTransaction?) -> Void)
 
 class StoreService:NSObject,ObservableObject{
+    
+    @Published var unlockedRecipes = [Recipe]()
+    
     private let allProductIdentifiers = Set(["com.ibrahimkarababa.InAppTesting.removeAds"])
     
     private var productsRequest:SKProductsRequest?
