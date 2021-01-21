@@ -16,6 +16,8 @@ class StoreService:NSObject,ObservableObject{
     private var fetchedProducts = [SKProduct]()
     private var fetchCompletionHandler:FetchCompletionHandler?
     
+    private var completedPurchases = [String]()
+    
     override init() {
         super.init()
         startObservingPaymentQueue()
@@ -43,9 +45,29 @@ class StoreService:NSObject,ObservableObject{
     
 }
 
-extension StoreService:SKPaymentTransactionObserver{
+extension StoreService:SKPaymentTransactionObserver{ //Observes payment state
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        
+        for singleTransaction in transactions{
+            var shouldFinishTransaction = false
+            switch singleTransaction.transactionState {
+            
+            case .purchased,.restored:
+                completedPurchases.append(singleTransaction.payment.productIdentifier)
+                shouldFinishTransaction = true
+                
+            case .failed:
+                shouldFinishTransaction = true
+    
+            case .purchasing,.deferred:
+                break
+            @unknown default:
+                break
+            }
+            
+            if shouldFinishTransaction{ // If user completed either purchasing or canceling
+                SKPaymentQueue.default().finishTransaction(singleTransaction)
+            }
+        }
     }
 }
 
