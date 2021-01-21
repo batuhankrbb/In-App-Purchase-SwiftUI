@@ -51,7 +51,12 @@ class StoreService:NSObject,ObservableObject{
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
     }
-    
+}
+
+extension StoreService{
+    func purchaseProduct(_ product: SKProduct){
+        buy(product){_ in }
+    }
 }
 
 extension StoreService:SKPaymentTransactionObserver{ //Observes payment state
@@ -63,10 +68,8 @@ extension StoreService:SKPaymentTransactionObserver{ //Observes payment state
             case .purchased,.restored:
                 completedPurchases.append(singleTransaction.payment.productIdentifier)
                 shouldFinishTransaction = true
-                
             case .failed:
                 shouldFinishTransaction = true
-    
             case .purchasing,.deferred:
                 break
             @unknown default:
