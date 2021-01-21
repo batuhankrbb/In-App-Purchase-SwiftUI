@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct InAppTestingApp: App {
-    
+  
+    @StateObject var store = StoreService()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(store)
                 
         }
     }
 }
+

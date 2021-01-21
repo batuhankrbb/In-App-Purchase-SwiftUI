@@ -16,12 +16,23 @@ class StoreService:NSObject,ObservableObject{
     private var fetchedProducts = [SKProduct]()
     private var fetchCompletionHandler:FetchCompletionHandler?
     
-    private func fetchProduct(_ completion: @escaping FetchCompletionHandler){
+    override init() {
+        super.init()
+        fetchProducts { (products) in
+            print(products)
+        }
+    }
+    
+    private func fetchProducts(_ completion: @escaping FetchCompletionHandler){
         guard self.productsRequest == nil else {
             return
         }
         
         fetchCompletionHandler = completion
+        
+        self.productsRequest = SKProductsRequest(productIdentifiers: allProductIdentifiers)
+        productsRequest?.delegate = self
+        productsRequest?.start()
     }
     
 }
@@ -36,6 +47,7 @@ extension StoreService:SKProductsRequestDelegate{
             if !invalidProducts.isEmpty{
                 print("Invalid products found")
             }
+            self.productsRequest = nil
             return
         }
         
@@ -44,6 +56,7 @@ extension StoreService:SKProductsRequestDelegate{
         DispatchQueue.main.async {
             self.fetchCompletionHandler?(loadedProducts)
             self.fetchCompletionHandler = nil
+            self.productsRequest = nil
         }
         
     }
