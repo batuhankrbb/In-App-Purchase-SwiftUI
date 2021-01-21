@@ -13,13 +13,19 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             List(store.allRecipies, id: \.self){recipe in
-                NavigationLink(
-                    destination: Text("test"),
-                    label: {
-                        RecipeCell(recipe: recipe) {
-                            
+                if !recipe.isLocked{ // if user purchased before
+                    NavigationLink(
+                        destination: Text("test"),
+                        label: {
+                            RecipeCell(recipe: recipe) {}
+                        })
+                }else{
+                    RecipeCell(recipe: recipe) {
+                        if let product =  store.product(for: recipe.id){
+                            store.purchaseProduct(product)
                         }
-                    })
+                    }
+                }
             }
         }
     }

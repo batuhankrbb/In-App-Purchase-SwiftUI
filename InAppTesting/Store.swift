@@ -68,6 +68,10 @@ extension StoreService{
     func purchaseProduct(_ product: SKProduct){
         buy(product){_ in }
     }
+    
+    func product(for identifier: String) -> SKProduct?{
+        return fetchedProducts.first(where: {$0.productIdentifier == identifier})
+    }
 }
 
 extension StoreService:SKPaymentTransactionObserver{ //Observes payment state
