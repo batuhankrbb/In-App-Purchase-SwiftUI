@@ -12,7 +12,7 @@ typealias PurchaseCompletionHandler = ((SKPaymentTransaction?) -> Void)
 
 class StoreService:NSObject,ObservableObject{
     
-    @Published var unlockedRecipes = [Recipe]()
+    @Published var allRecipies = [Recipe]()
     
     private let allProductIdentifiers = Set(["com.ibrahimkarababa.InAppTesting.removeAds"])
     
@@ -21,14 +21,22 @@ class StoreService:NSObject,ObservableObject{
     private var fetchCompletionHandler:FetchCompletionHandler? // Assigned in fetchProducts, executed in ProductRequestDidReceive
     private var purchaseCompletionHandler:PurchaseCompletionHandler? // Assigned in buy, executed in PaymentQueueUpdatedTransaction
     
-    private var completedPurchases = [String]()
+    private var completedPurchases = [String](){
+        didSet{
+            DispatchQueue.main.async {
+                for index in self.allRecipies.indices{
+                    self.allRecipies[index].isLocked = !self.completedPurchases.contains(self.allRecipies[index].id)
+                }
+            }
+        }
+    }
     
     override init() {
         super.init()
         startObservingPaymentQueue()
         
         fetchProducts { (products) in
-            print(products)
+            self.allRecipies = products.map {Recipe(product: $0)}
         }
     }
     
