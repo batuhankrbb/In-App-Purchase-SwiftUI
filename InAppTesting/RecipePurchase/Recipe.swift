@@ -7,7 +7,6 @@
 
 import StoreKit
 
-//Note for myself = We need to create a class to store details of in app purchase item like formatted prices for ads.
 struct Recipe:Hashable{
     let id:String
     let title:String
